@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio | Audiovisual</title>
+    <style>
+        /* Estilos Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Rolagem suave para os links do menu */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #121212;
+            color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        /* Menu de Navegação */
+        nav {
+            background-color: #1f1f1f;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00adb5;
+        }
+
+        /* Seções */
+        section {
+            padding: 100px 20px 60px; /* Espaço para o menu fixo não cobrir o título */
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 80vh;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #00adb5;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5rem;
+        }
+
+        /* Grid para Vídeos e Fotos */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Estilo dos Vídeos */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Estilo das Fotos */
+        .foto-item {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .foto-item:hover {
+            transform: scale(1.03);
+        }
+
+        /* Estilo do PDF */
+        .pdf-section {
+            text-align: center;
+        }
+
+        .btn-pdf {
+            display: inline-block;
+            background-color: #00adb5;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-pdf:hover {
+            background-color: #007a80;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu de Navegação Fixo -->
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#fotos">Fotos</a>
+        <a href="#pdfs">Arquivos PDF</a>
+    </nav>
+
+    <!-- Cabeçalho / Início -->
+    <section id="inicio">
+        <h1>Seu Nome Aqui</h1>
+        <p style="text-align: center; font-size: 1.2rem;">Olá! Sou criador audiovisual e editor. Confira meus trabalhos abaixo.</p>
+    </section>
+
+    <!-- Seção de Vídeos -->
+    <section id="videos">
+        <h2>Meus Vídeos</h2>
+        <div class="grid-container">
+            <!-- Exemplo de vídeo incorporado (Youtube) -->
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO" allowfullscreen></iframe>
+            </div>
+            <!-- Adicione mais blocos de vídeo copiando a div "video-wrapper" -->
+        </div>
+    </section>
+
+    <!-- Seção de Fotos -->
+    <section id="fotos">
+        <h2>Minhas Fotos</h2>
+        <div class="grid-container">
+            <!-- Exemplo de fotos. Substitua o src pelo link da sua foto -->
+            <img class="foto-item" src="https://via.placeholder.com/400x300/333/fff?text=Foto+1" alt="Descrição da foto 1">
+            <img class="foto-item" src="https://via.placeholder.com/400x300/333/fff?text=Foto+2" alt="Descrição da foto 2">
+            <img class="foto-item" src="https://via.placeholder.com/400x300/333/fff?text=Foto+3" alt="Descrição da foto 3">
+        </div>
+    </section>
+
+    <!-- Seção de PDFs -->
+    <section id="pdfs">
+        <h2>Materiais e Documentos</h2>
+        <div class="pdf-section">
+            <p style="margin-bottom: 20px;">Clique no botão abaixo para visualizar ou baixar meus materiais em PDF.</p>
+            <a href="LINK_DO_SEU_PDF_AQUI" target="_blank" class="btn-pdf">Abrir Portfólio em PDF</a>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Entre em contato: <a href="mailto:seuemail@exemplo.com" style="color: #00adb5;">seuemail@exemplo.com</a></p>
+        <p>&copy; 2026 Seu Nome. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
