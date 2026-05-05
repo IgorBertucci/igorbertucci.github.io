@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio | Audiovisual</title>
+    <title>Portfólio | Igor Bertucci Colete Silvy</title>
     <style>
         /* Estilos Base */
         * {
@@ -13,7 +13,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Rolagem suave para os links do menu */
         html {
             scroll-behavior: smooth;
         }
@@ -33,6 +32,7 @@
             top: 0;
             z-index: 1000;
             text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         nav a {
@@ -49,10 +49,16 @@
 
         /* Seções */
         section {
-            padding: 100px 20px 60px; /* Espaço para o menu fixo não cobrir o título */
+            padding: 100px 20px 60px;
             max-width: 1000px;
             margin: 0 auto;
             min-height: 80vh;
+        }
+
+        #inicio {
+            min-height: auto;
+            padding-bottom: 20px;
+            text-align: center;
         }
 
         h1, h2 {
@@ -64,23 +70,52 @@
         h1 {
             margin-top: 50px;
             font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
-        /* Grid para Vídeos e Fotos */
+        /* Botão do Currículo */
+        .btn-cv {
+            display: inline-block;
+            background-color: #00adb5;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn-cv:hover {
+            background-color: #007a80;
+        }
+
+        /* Grid para Vídeos e Imagens */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
 
-        /* Estilo dos Vídeos */
+        /* Estilo dos Cards (Mídia + Texto) */
+        .card {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Estilo dos Vídeos no Card */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* Proporção 16:9 */
             height: 0;
             background: #000;
-            border-radius: 8px;
-            overflow: hidden;
         }
         
         .video-wrapper iframe {
@@ -92,43 +127,32 @@
             border: none;
         }
 
-        /* Estilo das Fotos */
-        .foto-item {
+        /* Estilo das Imagens no Card */
+        .img-item {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
+            display: block;
         }
 
-        .foto-item:hover {
-            transform: scale(1.03);
+        /* Texto descritivo abaixo da mídia */
+        .descricao {
+            padding: 15px;
+            font-size: 0.95rem;
+            color: #ccc;
+            text-align: left;
         }
 
-        /* Estilo do PDF */
-        .pdf-section {
-            text-align: center;
-        }
-
-        .btn-pdf {
-            display: inline-block;
-            background-color: #00adb5;
+        .descricao strong {
             color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn-pdf:hover {
-            background-color: #007a80;
+            display: block;
+            margin-bottom: 5px;
         }
 
         /* Rodapé */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
             background-color: #1f1f1f;
             margin-top: 40px;
         }
@@ -140,52 +164,87 @@
     <nav>
         <a href="#inicio">Início</a>
         <a href="#videos">Vídeos</a>
-        <a href="#fotos">Fotos</a>
-        <a href="#pdfs">Arquivos PDF</a>
+        <a href="#imagens">Imagens</a>
     </nav>
 
     <!-- Cabeçalho / Início -->
     <section id="inicio">
-        <h1>Seu Nome Aqui</h1>
-        <p style="text-align: center; font-size: 1.2rem;">Olá! Sou criador audiovisual e editor. Confira meus trabalhos abaixo.</p>
+        <h1>Igor Bertucci Colete Silvy</h1>
+        <p style="font-size: 1.2rem;">Criador audiovisual, editor de vídeos e designer.</p>
+        
+        <!-- Botão para o Currículo no Drive -->
+        <a href="https://drive.google.com/file/d/1UykAPFbakbqa3uOIrAHlcbts7hv-fuH7/view?usp=sharing" target="_blank" class="btn-cv">Ver Meu Currículo</a>
     </section>
 
     <!-- Seção de Vídeos -->
     <section id="videos">
         <h2>Meus Vídeos</h2>
         <div class="grid-container">
-            <!-- Exemplo de vídeo incorporado (Youtube) -->
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO" allowfullscreen></iframe>
+            
+            <!-- Card de Vídeo 1 -->
+            <div class="card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO" allowfullscreen></iframe>
+                </div>
+                <div class="descricao">
+                    <strong>Título do Projeto</strong>
+                    Breve descrição do processo de criação. Ex: Edição de vídeo feita no Premiere, com foco em correção de cor e sincronização de áudio para manter a dinâmica do conteúdo.
+                </div>
             </div>
-            <!-- Adicione mais blocos de vídeo copiando a div "video-wrapper" -->
+
+            <!-- Card de Vídeo 2 -->
+            <div class="card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO" allowfullscreen></iframe>
+                </div>
+                <div class="descricao">
+                    <strong>Título do Projeto</strong>
+                    Breve descrição do processo de criação deste vídeo...
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Seção de Fotos -->
-    <section id="fotos">
-        <h2>Minhas Fotos</h2>
+    <!-- Seção de Imagens -->
+    <section id="imagens">
+        <h2>Minhas Imagens</h2>
         <div class="grid-container">
-            <!-- Exemplo de fotos. Substitua o src pelo link da sua foto -->
-            <img class="foto-item" src="https://via.placeholder.com/400x300/333/fff?text=Foto+1" alt="Descrição da foto 1">
-            <img class="foto-item" src="https://via.placeholder.com/400x300/333/fff?text=Foto+2" alt="Descrição da foto 2">
-            <img class="foto-item" src="https://via.placeholder.com/400x300/333/fff?text=Foto+3" alt="Descrição da foto 3">
-        </div>
-    </section>
+            
+            <!-- Card de Imagem 1 -->
+            <div class="card">
+                <img class="img-item" src="https://via.placeholder.com/400x300/333/fff?text=Imagem+1" alt="Material visual 1">
+                <div class="descricao">
+                    <strong>Arte para Redes Sociais</strong>
+                    Criado no Canva utilizando paleta de cores específica da marca. O foco foi destacar a tipografia e manter o layout limpo.
+                </div>
+            </div>
 
-    <!-- Seção de PDFs -->
-    <section id="pdfs">
-        <h2>Materiais e Documentos</h2>
-        <div class="pdf-section">
-            <p style="margin-bottom: 20px;">Clique no botão abaixo para visualizar ou baixar meus materiais em PDF.</p>
-            <a href="LINK_DO_SEU_PDF_AQUI" target="_blank" class="btn-pdf">Abrir Portfólio em PDF</a>
+            <!-- Card de Imagem 2 -->
+            <div class="card">
+                <img class="img-item" src="https://via.placeholder.com/400x300/333/fff?text=Imagem+2" alt="Material visual 2">
+                <div class="descricao">
+                    <strong>Edição de Fotografia</strong>
+                    Tratamento de imagem com ajustes de exposição, contraste e remoção de imperfeições.
+                </div>
+            </div>
+
+            <!-- Card de Imagem 3 -->
+            <div class="card">
+                <img class="img-item" src="https://via.placeholder.com/400x300/333/fff?text=Imagem+3" alt="Material visual 3">
+                <div class="descricao">
+                    <strong>Diagramação de PDF</strong>
+                    Print de material originalmente diagramado em PDF. Foco na hierarquia de informações e alinhamento visual.
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Rodapé -->
     <footer>
-        <p>Entre em contato: <a href="mailto:seuemail@exemplo.com" style="color: #00adb5;">seuemail@exemplo.com</a></p>
-        <p>&copy; 2026 Seu Nome. Todos os direitos reservados.</p>
+        <p>Entre em contato: <a href="mailto:igor_bertucci@hotmail.com" style="color: #00adb5;">igor_bertucci@hotmail.com</a></p>
+        <p style="margin-top: 10px; color: #888;">&copy; 2026 Igor Bertucci Colete Silvy. Todos os direitos reservados.</p>
     </footer>
 
 </body>
