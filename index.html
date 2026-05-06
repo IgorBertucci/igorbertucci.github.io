@@ -38,9 +38,10 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             font-weight: bold;
             transition: color 0.3s;
+            font-size: 0.9rem;
         }
 
         nav a:hover {
@@ -52,7 +53,7 @@
             padding: 100px 20px 60px;
             max-width: 1000px;
             margin: 0 auto;
-            min-height: 80vh;
+            min-height: 50vh;
         }
 
         #inicio {
@@ -69,7 +70,7 @@
 
         h1 {
             margin-top: 50px;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
         }
 
@@ -90,40 +91,43 @@
             background-color: #007a80;
         }
 
-        /* Grid para Vídeos e Imagens */
+        /* Grid */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        /* Estilo dos Cards */
+        /* Cards */
         .card {
             background-color: #1f1f1f;
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
-        .video-wrapper {
+        .video-thumbnail-wrapper {
             position: relative;
             padding-bottom: 56.25%;
-            height: 0;
             background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
-        .video-wrapper iframe {
+
+        /* Ícone de Play nos vídeos */
+        .video-thumbnail-wrapper::after {
+            content: '▶';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
         }
 
         .img-item {
@@ -146,16 +150,8 @@
             margin-bottom: 5px;
         }
 
-        /* Rodapé */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background-color: #1f1f1f;
-            margin-top: 40px;
-        }
-
-        /* Estilo do Lightbox (Modal) - Corrigido e fora do footer */
-        .lightbox {
+        /* Lightbox Generérico */
+        .modal {
             display: none;
             position: fixed;
             z-index: 2000;
@@ -163,93 +159,131 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
         }
-        
-        .lightbox img {
+
+        .modal-content {
             max-width: 90%;
-            max-height: 90%;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-height: 80%;
             animation: zoomIn 0.3s ease;
         }
-        
+
+        .video-container {
+            width: 80vw;
+            height: 45vw; /* Proporção 16:9 */
+            max-width: 1000px;
+            max-height: 562px;
+        }
+
         @keyframes zoomIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
+        }
+
+        .fechar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #1f1f1f;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Estrutura do Lightbox (Agora dentro do body) -->
-    <div id="lightbox" class="lightbox" onclick="fecharImagem()">
-        <img id="imagem-expandida" src="" alt="Imagem expandida">
+    <!-- Modais -->
+    <div id="modal-img" class="modal" onclick="fecharModal('modal-img')">
+        <span class="fechar">&times;</span>
+        <img id="img-expandida" class="modal-content" src="">
     </div>
 
-    <!-- Menu de Navegação Fixo -->
+    <div id="modal-video" class="modal" onclick="fecharModal('modal-video')">
+        <span class="fechar">&times;</span>
+        <div class="modal-content video-container">
+            <iframe id="video-expandido" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Menu -->
     <nav>
         <a href="#inicio">Início</a>
         <a href="#videos">Vídeos</a>
         <a href="#imagens">Imagens</a>
+        <a href="#social-midia">Social Mídia</a>
     </nav>
 
-    <!-- Cabeçalho / Início -->
+    <!-- Início -->
     <section id="inicio">
         <h1>Igor Bertucci Colete Silvy</h1>
         <p style="font-size: 1.2rem;">Criador audiovisual, editor de vídeos e filmmaker.</p>
         <a href="https://drive.google.com/file/d/1UykAPFbakbqa3uOIrAHlcbts7hv-fuH7/view?usp=sharing" target="_blank" class="btn-cv">Ver Meu Currículo</a>
     </section>
 
-    <!-- Seção de Vídeos -->
+    <!-- Vídeos -->
     <section id="videos">
         <h2>Minhas Criações</h2>
         <div class="grid-container">
-            <div class="card">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/l6oHso31tHc" allowfullscreen></iframe>
+            <div class="card" onclick="abrirVideo('https://www.youtube.com/embed/l6oHso31tHc')">
+                <div class="video-thumbnail-wrapper">
+                    <!-- Usando a thumb do próprio YouTube para o card -->
+                    <img src="https://img.youtube.com/vi/l6oHso31tHc/hqdefault.jpg" class="img-item" alt="Thumbnail Vídeo 1">
                 </div>
                 <div class="descricao">
                     <strong>Video Promocional Acampamento</strong>
-                    Filmagem no Iphone 13 e edição de vídeo feita no Premiere, com foco na sincronização do áudio para manter a dinâmica do conteúdo.
+                    Filmagem no Iphone 13 e edição de vídeo feita no Premiere.
                 </div>
             </div>
 
-            <div class="card">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/1aEXpdQvWKA" allowfullscreen></iframe>
+            <div class="card" onclick="abrirVideo('https://www.youtube.com/embed/1aEXpdQvWKA')">
+                <div class="video-thumbnail-wrapper">
+                    <img src="https://img.youtube.com/vi/1aEXpdQvWKA/hqdefault.jpg" class="img-item" alt="Thumbnail Vídeo 2">
                 </div>
                 <div class="descricao">
                     <strong>Iluminação para Show</strong>
-                    Programação de mesa de iluminação (Daslight) para um evento no acampamento da igreja.
+                    Programação de mesa de iluminação (Daslight).
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Imagens -->
+    <!-- Imagens -->
     <section id="imagens">
         <h2>Produções Visuais</h2>
         <div class="grid-container">
             <div class="card" onclick="abrirImagem('Imagens/MoodBoard.png')">
-                <img class="img-item" src="Imagens/MoodBoard.png" alt="Material visual 1" style="cursor: zoom-in;">
+                <img class="img-item" src="Imagens/MoodBoard.png" alt="Material visual 1">
                 <div class="descricao">
                     <strong>Confecção de Cardápio</strong>
-                    Criado no Canva utilizando imagem dos produtos reais, foco divulgação dos novos sabores.
+                    Criado no Canva utilizando imagem dos produtos reais.
                 </div>
             </div>
             
-            <div class="card" onclick="abrirImagem('Imagens/iomix.jpg')">
-                <img class="img-item" src="Imagens/iomix.jpg" alt="Material visual 2" style="cursor: zoom-in;">
+            <div class="card" onclick="abrirImagem('Imagens/iomix .jpg')">
+                <img class="img-item" src="Imagens/iomix .jpg" alt="Material visual 2">
                 <div class="descricao">
                     <strong>Montagem para uso pessoal</strong>
-                    Criação no Canva, quadro de inspirações com fotos autorais e imagens da internet.
+                    Criação no Canva, quadro de inspirações com fotos autorais.
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Social Mídia -->
+    <section id="social-midia">
+        <h2>Social Mídia</h2>
+        <p style="text-align: center; color: #888; font-style: italic; font-size: 1.5rem; margin-top: 40px;">Em breve</p>
     </section>
 
     <!-- Rodapé -->
@@ -260,12 +294,20 @@
 
     <script>
         function abrirImagem(src) {
-            document.getElementById('lightbox').style.display = 'flex';
-            document.getElementById('imagem-expandida').src = src;
+            document.getElementById('modal-img').style.display = 'flex';
+            document.getElementById('img-expandida').src = src;
         }
 
-        function fecharImagem() {
-            document.getElementById('lightbox').style.display = 'none';
+        function abrirVideo(url) {
+            document.getElementById('modal-video').style.display = 'flex';
+            document.getElementById('video-expandido').src = url + "?autoplay=1";
+        }
+
+        function fecharModal(id) {
+            document.getElementById(id).style.display = 'none';
+            if(id === 'modal-video') {
+                document.getElementById('video-expandido').src = ""; // Para o vídeo ao fechar
+            }
         }
     </script>
 </body>
