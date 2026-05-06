@@ -13,9 +13,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: #121212;
@@ -44,40 +42,25 @@
             font-size: 0.9rem;
         }
 
-        nav a:hover {
-            color: #e63946;
-        }
+        nav a:hover { color: #ff4d4d; }
 
         /* Seções */
         section {
             padding: 100px 20px 60px;
             max-width: 1000px;
             margin: 0 auto;
-            min-height: 50vh;
         }
 
-        #inicio {
-            min-height: auto;
-            padding-bottom: 20px;
-            text-align: center;
-        }
+        #inicio { text-align: center; padding-bottom: 20px; }
 
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #e63946;
-        }
+        h1, h2 { text-align: center; margin-bottom: 40px; color: #ff4d4d; }
 
-        h1 {
-            margin-top: 50px;
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-        }
+        h1 { margin-top: 50px; font-size: 2.5rem; margin-bottom: 15px; }
 
         /* Botão do Currículo */
         .btn-cv {
             display: inline-block;
-            background-color: #e63946;
+            background-color: #ff4d4d;
             color: #fff;
             padding: 12px 25px;
             text-decoration: none;
@@ -87,18 +70,15 @@
             transition: background 0.3s;
         }
 
-        .btn-cv:hover {
-            background-color: #007a80;
-        }
+        .btn-cv:hover { background-color: #b32d2d; }
 
-        /* Grid */
+        /* Grid e Cards Corrigidos */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        /* Cards */
         .card {
             background-color: #1f1f1f;
             border-radius: 8px;
@@ -106,51 +86,51 @@
             transition: transform 0.3s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .video-thumbnail-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            background: #000;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
         }
 
-        /* Ícone de Play nos vídeos */
-        .video-thumbnail-wrapper::after {
+        .card:hover { transform: translateY(-5px); }
+
+        /* Container de Mídia com Proporção 16:9 Fixa */
+        .media-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Mantém o padrão cinematográfico */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .media-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Preenche o espaço sem sobrar preto */
+            display: block;
+        }
+
+        /* Ícone de Play para Vídeos */
+        .video-card .media-container::after {
             content: '▶';
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 3rem;
             color: rgba(255, 255, 255, 0.8);
             z-index: 1;
-        }
-
-        .img-item {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
+            text-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
         .descricao {
             padding: 15px;
             font-size: 0.95rem;
             color: #ccc;
-            text-align: left;
+            flex-grow: 1;
         }
 
-        .descricao strong {
-            color: #fff;
-            display: block;
-            margin-bottom: 5px;
-        }
+        .descricao strong { color: #fff; display: block; margin-bottom: 5px; }
 
-        /* Lightbox Generérico */
+        /* Modais */
         .modal {
             display: none;
             position: fixed;
@@ -166,15 +146,14 @@
 
         .modal-content {
             max-width: 90%;
-            max-height: 80%;
+            max-height: 85%;
             animation: zoomIn 0.3s ease;
         }
 
         .video-container {
-            width: 80vw;
-            height: 45vw; /* Proporção 16:9 */
+            width: 85vw;
+            aspect-ratio: 16 / 9;
             max-width: 1000px;
-            max-height: 562px;
         }
 
         @keyframes zoomIn {
@@ -192,12 +171,11 @@
             cursor: pointer;
         }
 
-        /* Rodapé */
         footer {
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             background-color: #1f1f1f;
-            margin-top: 40px;
+            margin-top: 60px;
         }
     </style>
 </head>
@@ -228,17 +206,16 @@
     <section id="inicio">
         <h1>Igor Bertucci Colete Silvy</h1>
         <p style="font-size: 1.2rem;">Criador audiovisual, editor de vídeos e filmmaker.</p>
-        <a href="https://drive.google.com/file/d/1UykAPFbakbqa3uOIrAHlcbts7hv-fuH7/view?usp=sharing" target="_blank" class="btn-cv">Ver Meu Currículo</a>
+        <a href="https://drive.google.com/file/d/1UykAPFbakbqa3uOIrAHlcbts7hv-fuH7/view?usp=sharing" target="_blank" class="btn-cv">Meu Currículo</a>
     </section>
 
     <!-- Vídeos -->
     <section id="videos">
         <h2>Minhas Criações</h2>
         <div class="grid-container">
-            <div class="card" onclick="abrirVideo('https://www.youtube.com/embed/l6oHso31tHc')">
-                <div class="video-thumbnail-wrapper">
-                    <!-- Usando a thumb do próprio YouTube para o card -->
-                    <img src="https://img.youtube.com/vi/l6oHso31tHc/hqdefault.jpg" class="img-item" alt="Thumbnail Vídeo 1">
+            <div class="card video-card" onclick="abrirVideo('https://www.youtube.com/embed/l6oHso31tHc')">
+                <div class="media-container">
+                    <img src="https://img.youtube.com/vi/l6oHso31tHc/hqdefault.jpg" alt="Thumbnail Vídeo 1">
                 </div>
                 <div class="descricao">
                     <strong>Video Promocional Acampamento</strong>
@@ -246,9 +223,9 @@
                 </div>
             </div>
 
-            <div class="card" onclick="abrirVideo('https://www.youtube.com/embed/1aEXpdQvWKA')">
-                <div class="video-thumbnail-wrapper">
-                    <img src="https://img.youtube.com/vi/1aEXpdQvWKA/hqdefault.jpg" class="img-item" alt="Thumbnail Vídeo 2">
+            <div class="card video-card" onclick="abrirVideo('https://www.youtube.com/embed/1aEXpdQvWKA')">
+                <div class="media-container">
+                    <img src="https://img.youtube.com/vi/1aEXpdQvWKA/hqdefault.jpg" alt="Thumbnail Vídeo 2">
                 </div>
                 <div class="descricao">
                     <strong>Iluminação para Show</strong>
@@ -263,7 +240,9 @@
         <h2>Produções Visuais</h2>
         <div class="grid-container">
             <div class="card" onclick="abrirImagem('Imagens/MoodBoard.png')">
-                <img class="img-item" src="Imagens/MoodBoard.png" alt="Material visual 1">
+                <div class="media-container">
+                    <img src="Imagens/MoodBoard.png" alt="Cardápio">
+                </div>
                 <div class="descricao">
                     <strong>Confecção de Cardápio</strong>
                     Criado no Canva utilizando imagem dos produtos reais.
@@ -271,10 +250,12 @@
             </div>
             
             <div class="card" onclick="abrirImagem('Imagens/iomix .jpg')">
-                <img class="img-item" src="Imagens/iomix .jpg" alt="Material visual 2">
+                <div class="media-container">
+                    <img src="Imagens/iomix .jpg" alt="Montagem Iomix">
+                </div>
                 <div class="descricao">
                     <strong>Montagem para uso pessoal</strong>
-                    Criação no Canva, quadro de inspirações com fotos autorais.
+                    Criação no Canva com fotos autorais.
                 </div>
             </div>
         </div>
@@ -288,8 +269,8 @@
 
     <!-- Rodapé -->
     <footer>
-        <p>Entre em contato: <a href="mailto:igor_bertucci@hotmail.com" style="color: #e63946;">igor_bertucci@hotmail.com</a></p>
-        <p style="margin-top: 10px; color: #888;">&copy; 2026 Igor Bertucci Colete Silvy. Todos os direitos reservados.</p>
+        <p>Entre em contato: <a href="mailto:igor_bertucci@hotmail.com" style="color: #ff4d4d;">igor_bertucci@hotmail.com</a></p>
+        <p style="margin-top: 10px; color: #888;">&copy; 2026 Igor Bertucci Colete Silvy.</p>
     </footer>
 
     <script>
@@ -306,7 +287,7 @@
         function fecharModal(id) {
             document.getElementById(id).style.display = 'none';
             if(id === 'modal-video') {
-                document.getElementById('video-expandido').src = ""; // Para o vídeo ao fechar
+                document.getElementById('video-expandido').src = "";
             }
         }
     </script>
