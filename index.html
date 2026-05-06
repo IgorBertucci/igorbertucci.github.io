@@ -97,7 +97,7 @@
             gap: 30px;
         }
 
-        /* Estilo dos Cards (Mídia + Texto) */
+        /* Estilo dos Cards */
         .card {
             background-color: #1f1f1f;
             border-radius: 8px;
@@ -110,10 +110,9 @@
             transform: translateY(-5px);
         }
 
-        /* Estilo dos Vídeos no Card */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             background: #000;
         }
@@ -127,7 +126,6 @@
             border: none;
         }
 
-        /* Estilo das Imagens no Card */
         .img-item {
             width: 100%;
             height: 250px;
@@ -135,7 +133,6 @@
             display: block;
         }
 
-        /* Texto descritivo abaixo da mídia */
         .descricao {
             padding: 15px;
             font-size: 0.95rem;
@@ -156,9 +153,42 @@
             background-color: #1f1f1f;
             margin-top: 40px;
         }
+
+        /* Estilo do Lightbox (Modal) - Corrigido e fora do footer */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Estrutura do Lightbox (Agora dentro do body) -->
+    <div id="lightbox" class="lightbox" onclick="fecharImagem()">
+        <img id="imagem-expandida" src="" alt="Imagem expandida">
+    </div>
 
     <!-- Menu de Navegação Fixo -->
     <nav>
@@ -171,17 +201,13 @@
     <section id="inicio">
         <h1>Igor Bertucci Colete Silvy</h1>
         <p style="font-size: 1.2rem;">Criador audiovisual, editor de vídeos e filmmaker.</p>
-        
-        <!-- Botão para o Currículo no Drive -->
         <a href="https://drive.google.com/file/d/1UykAPFbakbqa3uOIrAHlcbts7hv-fuH7/view?usp=sharing" target="_blank" class="btn-cv">Ver Meu Currículo</a>
     </section>
 
     <!-- Seção de Vídeos -->
     <section id="videos">
-        <h2>Meus Vídeos</h2>
+        <h2>Minhas Criações</h2>
         <div class="grid-container">
-            
-            <!-- Card de Vídeo 1 -->
             <div class="card">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/l6oHso31tHc" allowfullscreen></iframe>
@@ -192,7 +218,6 @@
                 </div>
             </div>
 
-            <!-- Card de Vídeo 2 -->
             <div class="card">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/1aEXpdQvWKA" allowfullscreen></iframe>
@@ -202,35 +227,28 @@
                     Programação de mesa de iluminação (Daslight) para um evento no acampamento da igreja.
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- Seção de Imagens -->
     <section id="imagens">
-        <h2>Produções visuais</h2>
+        <h2>Produções Visuais</h2>
         <div class="grid-container">
-            
-            <!-- Card de Imagem 1 -->
-            <div class="card">
-                <img class="img-item" src="Imagens/iomix .jpg" alt="Material visual 1">
+            <div class="card" onclick="abrirImagem('Imagens/MoodBoard.png')">
+                <img class="img-item" src="Imagens/MoodBoard.png" alt="Material visual 1" style="cursor: zoom-in;">
                 <div class="descricao">
-                    <strong> Confecção de Cardápio</strong>
+                    <strong>Confecção de Cardápio</strong>
                     Criado no Canva utilizando imagem dos produtos reais, foco divulgação dos novos sabores.
                 </div>
             </div>
-
-            <!-- Card de Imagem 2 -->
-            <div class="card">
-                <img class="img-item" src="Imagens/MoodBoard.png" alt="Material visual 2">
+            
+            <div class="card" onclick="abrirImagem('Imagens/iomix.jpg')">
+                <img class="img-item" src="Imagens/iomix.jpg" alt="Material visual 2" style="cursor: zoom-in;">
                 <div class="descricao">
                     <strong>Montagem para uso pessoal</strong>
                     Criação no Canva, quadro de inspirações com fotos autorais e imagens da internet.
                 </div>
             </div>
-
-            <!-- Card de Imagem 3 -->
-
         </div>
     </section>
 
@@ -240,5 +258,15 @@
         <p style="margin-top: 10px; color: #888;">&copy; 2026 Igor Bertucci Colete Silvy. Todos os direitos reservados.</p>
     </footer>
 
+    <script>
+        function abrirImagem(src) {
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('imagem-expandida').src = src;
+        }
+
+        function fecharImagem() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
